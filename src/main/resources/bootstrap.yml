@@ -1,0 +1,19 @@
+server:
+  port: 3999
+
+spring:
+  application:
+    name: config-server
+
+  profiles:
+    active: native,git
+
+  cloud:
+    config:
+      server:
+        native: # 컨피그 서버 특정 경로에 파일로써 설정 파일 관리
+          search-locations: classpath:/configs
+        git:  # 원격 레포지토리에 설정파일 조회
+          uri: ${repo.uri}
+          searchPaths: ${repo.path}
+          default-label: ${repo.branch}
